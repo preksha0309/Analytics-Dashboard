@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React ,{ useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Topbar from "./pages/global/Topbar";
+import Navbar from "./pages/global/Navbar";
 import Sidebar from "./pages/global/Sidebar";
 import Dashboard from "./pages/dashboard";
 import Team from "./pages/team";
@@ -12,17 +12,22 @@ import Line from "./pages/line";
 import Pie from "./pages/pie";
 import FAQ from "./pages/faq";
 import Geography from "./pages/geography";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./pages/calendar/calendar";
-import './App.css';
 
 function App() {
+  const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
 
   return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <div className="app">
           <Sidebar isSidebar={isSidebar} />
           <main className="content">
-            <Topbar setIsSidebar={setIsSidebar} />
+            <Navbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
@@ -38,9 +43,9 @@ function App() {
             </Routes>
           </main>
         </div>
-   
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
-
 }
 
 export default App;
