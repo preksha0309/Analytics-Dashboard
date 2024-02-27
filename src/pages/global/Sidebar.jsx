@@ -46,7 +46,7 @@ const Sidebar = () => {
       sx={{
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important `,
-          height:`140%`
+          height:`150%`
          
         },
         "& .pro-icon-wrapper": {
